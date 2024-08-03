@@ -1,47 +1,40 @@
-import { createContext, useState, useEffect } from "react";
-import netlifyIdentity from "netlify-identity-widget";
+// src/context/auth.js
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { app } from '../firebase'; // Ensure this points to your Firebase configuration file
 
-const AuthContext = createContext({
-  user: null,
-  login: () => {},
-  logout: () => {},
-  isAuthenticated: false,
-});
+const AuthContext = createContext();
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
+  const auth = getAuth(app);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    netlifyIdentity.on("login", (user) => {
-      setUser(user);
-      netlifyIdentity.close();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
     });
+    return unsubscribe;
+  }, [auth]);
 
-    netlifyIdentity.on("logout", () => {
-      setUser(null);
-    });
+  const signup = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-    netlifyIdentity.on("init", (user) => {
-      setUser(user);
-    });
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    netlifyIdentity.init();
-
-    return () => {
-      netlifyIdentity.off("login");
-      netlifyIdentity.off("logout");
-    };
-  }, []);
-
-  const login = () => netlifyIdentity.open();
-
-  const logout = () => netlifyIdentity.logout();
-
-  const context = { user, login, logout };
+  const logout = () => {
+    return signOut(auth);
+  };
 
   return (
-    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, signup, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export default AuthContext;
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

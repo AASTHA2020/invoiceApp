@@ -1,21 +1,22 @@
-import { useContext } from "react";
-import Logout from "../components/Logout";
-import { State } from "../context/stateContext";
+// src/components/Logout.js
+import React from 'react';
+import { useAuth } from '../context/auth'; // Use named import
 
-export default function LogOut() {
-  const { showLogoutModal, setShowLogoutModal } = useContext(State);
+const Logout = () => {
+  const { logout } = useAuth(); // Destructure the required function
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // Handle successful logout
+    } catch (error) {
+      // Handle errors
+    }
+  };
 
   return (
-    <>
-      <button
-        onClick={() => setShowLogoutModal(true)}
-        className="bg-white py-2 px-6 rounded text-base hover:bg-gray-800 text-gray-800 transition-all duration-150 hover:text-white hover:ring-4 hover:ring-gray-400"
-      >
-        Log Out
-      </button>
-
-      {/* Logout component modal */}
-      {showLogoutModal && <Logout />}
-    </>
+    <button onClick={handleLogout}>Logout</button>
   );
-}
+};
+
+export default Logout;

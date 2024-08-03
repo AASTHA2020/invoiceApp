@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { CreateAccount, LogIn, DonateButton } from "../../buttons"
+import { CreateAccount, LogIn } from "../../buttons"
 
 export default function Footer() {
   return (
@@ -37,7 +37,7 @@ export default function Footer() {
               <LogIn />
             </li>
             <li>
-              <DonateButton />
+             
             </li>
           </ul>
           <p className="text-slate-200">

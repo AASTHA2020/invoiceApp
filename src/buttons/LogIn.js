@@ -1,17 +1,38 @@
-import { useContext } from "react";
-import AuthContext from "../context/auth";
+// src/buttons/LogIn.js
+import React, { useState } from 'react';
+import { useAuth } from '../context/auth'; // Use named import
 
-export default function LogIn() {
-  const { login } = useContext(AuthContext);
+const LogIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useAuth(); // Destructure the required function
+
+  const handleLogin = async () => {
+    try {
+      await login(email, password);
+      alert('Login successful!'); // Add an alert to confirm successful login
+    } catch (error) {
+      alert('Error logging in: ' + error.message); // Display error message
+    }
+  };
 
   return (
-    <>
-      <button
-        onClick={login}
-        className="bg-white py-2 px-6 rounded text-base hover:bg-gray-800 text-gray-800 transition-all duration-150 hover:text-white hover:ring-4 hover:ring-gray-400"
-      >
-        Log In
-      </button>
-    </>
+    <div>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button onClick={handleLogin}>Log In</button>
+    </div>
   );
-}
+};
+
+export default LogIn;
