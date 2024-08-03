@@ -1,5 +1,5 @@
-import { CreateAccount, LogIn } from "../buttons"
-import hero from "../images/invoicerv2.png"
+import { CreateAccount, LogIn } from "../buttons";
+import hero from "../images/invoicerv2.png";
 
 export default function Home() {
   return (
@@ -20,10 +20,8 @@ export default function Home() {
                 />
               </article>
               <p className="text-slate-700 mt-5 md:mt-0 mb-5 text-center md:text-left">
-                Easily create, download and print invoices for your clients. No
-                more unsurety, just Invoicer It!
+                Easily create, download and print invoices for your clients. No more unsurety, just Invoicer It!
               </p>
-
               <ul className="flex flex-wrap items-center justify-center md:justify-start">
                 <li className="mr-3">
                   <CreateAccount />
@@ -32,10 +30,7 @@ export default function Home() {
                   <LogIn />
                 </li>
               </ul>
-
-             
             </article>
-
             <article className="hidden md:block">
               <img
                 src={hero}
@@ -47,8 +42,7 @@ export default function Home() {
           </div>
         </section>
       </section>
-
       <div className="slant"></div>
     </>
-  )
+  );
 }

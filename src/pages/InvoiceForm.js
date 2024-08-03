@@ -1,5 +1,3 @@
-// src/pages/InvoiceForm.js
-
 import React, { useContext, useRef } from 'react';
 import ClientDetails from '../components/ClientDetails';
 import Dates from '../components/Dates';
@@ -43,14 +41,10 @@ const InvoiceForm = () => {
     componentRef,
   } = useContext(State);
 
+  console.log('InvoiceForm rendered');
+  
   return (
-    <main
-      className="m-5 p-5 xl:grid grid-cols-2 gap-10 xl:items-start"
-      style={{
-        maxWidth: "1920px",
-        margin: "auto",
-      }}
-    >
+    <main className="m-5 p-5 xl:grid grid-cols-2 gap-10 xl:items-start" style={{ maxWidth: "1920px", margin: "auto" }}>
       <section>
         <div className="bg-white p-5 rounded shadow">
           <div className="flex flex-col justify-center">
@@ -68,7 +62,6 @@ const InvoiceForm = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
                 <label htmlFor="address">Enter your address</label>
                 <input
@@ -83,7 +76,6 @@ const InvoiceForm = () => {
                 />
               </div>
             </article>
-
             <article className="md:grid grid-cols-3 gap-10">
               <div className="flex flex-col">
                 <label htmlFor="email">Enter your email</label>
@@ -98,7 +90,6 @@ const InvoiceForm = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
                 <label htmlFor="website">Enter your website</label>
                 <input
@@ -112,7 +103,6 @@ const InvoiceForm = () => {
                   onChange={(e) => setWebsite(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
                 <label htmlFor="phone">Enter your phone</label>
                 <input
@@ -127,7 +117,6 @@ const InvoiceForm = () => {
                 />
               </div>
             </article>
-
             <article className="md:grid grid-cols-2 gap-10">
               <div className="flex flex-col">
                 <label htmlFor="bankName">Enter your bank name</label>
@@ -142,25 +131,21 @@ const InvoiceForm = () => {
                   onChange={(e) => setBankName(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
-                <label htmlFor="bankAccount">
-                  Enter your bank account number
-                </label>
+                <label htmlFor="bankAccount">Enter your bank account number</label>
                 <input
                   type="text"
                   name="bankAccount"
                   id="bankAccount"
                   placeholder="Enter your bank account number"
-                  maxLength={20}
+                  maxLength={32}
                   autoComplete="off"
                   value={bankAccount}
                   onChange={(e) => setBankAccount(e.target.value)}
                 />
               </div>
             </article>
-
-            <article className="md:grid grid-cols-2 gap-10 md:mt-16">
+            <article className="md:grid grid-cols-2 gap-10 md:mt-10">
               <div className="flex flex-col">
                 <label htmlFor="clientName">Enter your client's name</label>
                 <input
@@ -174,11 +159,8 @@ const InvoiceForm = () => {
                   onChange={(e) => setClientName(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
-                <label htmlFor="clientAddress">
-                  Enter your client's address
-                </label>
+                <label htmlFor="clientAddress">Enter your client's address</label>
                 <input
                   type="text"
                   name="clientAddress"
@@ -191,8 +173,7 @@ const InvoiceForm = () => {
                 />
               </div>
             </article>
-
-            <article className="md:grid grid-cols-3 gap-10">
+            <article className="md:grid grid-cols-2 gap-10">
               <div className="flex flex-col">
                 <label htmlFor="invoiceNumber">Invoice Number</label>
                 <input
@@ -200,12 +181,12 @@ const InvoiceForm = () => {
                   name="invoiceNumber"
                   id="invoiceNumber"
                   placeholder="Invoice Number"
+                  maxLength={10}
                   autoComplete="off"
                   value={invoiceNumber}
                   onChange={(e) => setInvoiceNumber(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
                 <label htmlFor="invoiceDate">Invoice Date</label>
                 <input
@@ -213,12 +194,12 @@ const InvoiceForm = () => {
                   name="invoiceDate"
                   id="invoiceDate"
                   placeholder="Invoice Date"
+                  maxLength={10}
                   autoComplete="off"
                   value={invoiceDate}
                   onChange={(e) => setInvoiceDate(e.target.value)}
                 />
               </div>
-
               <div className="flex flex-col">
                 <label htmlFor="dueDate">Due Date</label>
                 <input
@@ -226,54 +207,53 @@ const InvoiceForm = () => {
                   name="dueDate"
                   id="dueDate"
                   placeholder="Due Date"
+                  maxLength={10}
                   autoComplete="off"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
                 />
               </div>
             </article>
-
-            <article>
+            <article className="md:mt-10">
+              <label htmlFor="notes">Additional Notes</label>
+              <textarea
+                name="notes"
+                id="notes"
+                cols="30"
+                rows="10"
+                placeholder="Additional Notes"
+                maxLength={1000}
+                autoComplete="off"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              ></textarea>
+            </article>
+            <article className="md:mt-10">
+              <Table />
               <TableForm />
             </article>
-
-            <label htmlFor="notes">Additional Notes</label>
-            <textarea
-              name="notes"
-              id="notes"
-              cols="30"
-              rows="10"
-              placeholder="Additional notes to the client"
-              maxLength={500}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            ></textarea>
+            <div className="mt-10">
+              <ReactToPrint
+                trigger={() => (
+                  <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                    Print Invoice
+                  </button>
+                )}
+                content={() => componentRef.current}
+              />
+            </div>
           </div>
         </div>
-        <article className="mt-5">
-        
-        </article>
       </section>
-
-      <div className="invoice__preview bg-white p-5 rounded-2xl border-4 border-blue-200">
-        <ReactToPrint
-          trigger={() => (
-            <button className="bg-blue-500 ml-5 text-white font-bold py-2 px-8 rounded hover:bg-blue-600 hover:text-white transition-all duration-150 hover:ring-4 hover:ring-blue-400">
-              Print / Download
-            </button>
-          )}
-          content={() => componentRef.current}
-        />
-        <div ref={componentRef} className="p-5">
-          <Header />
-          <MainDetails />
-          <ClientDetails />
-          <Dates />
-          <Table />
-          <Notes />
-          <Footer />
-        </div>
-      </div>
+      <section className="md:mt-5 md:p-5" ref={componentRef}>
+        <Header />
+        <MainDetails />
+        <ClientDetails />
+        <Dates />
+        <Table />
+        <Notes />
+        <Footer />
+      </section>
     </main>
   );
 };

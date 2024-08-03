@@ -1,22 +1,13 @@
-// src/components/Logout.js
 import React from 'react';
-import { useAuth } from '../context/auth'; // Use named import
+import { Link } from 'react-router-dom';
 
-const Logout = () => {
-  const { logout } = useAuth(); // Destructure the required function
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      // Handle successful logout
-    } catch (error) {
-      // Handle errors
-    }
-  };
-
+export function LogOut() {
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <Link
+      to="/logout"
+      className="inline-block bg-red-500 hover:bg-red-600 text-white text-center font-semibold py-2 px-5 rounded"
+    >
+      Log Out
+    </Link>
   );
-};
-
-export default Logout;
+}
