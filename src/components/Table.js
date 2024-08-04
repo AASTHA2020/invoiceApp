@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 
 export default function Table() {
-  const { list, total } = useContext(State);
+  const { list, total } = useContext(StateContext);
 
   return (
     <>

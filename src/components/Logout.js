@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { CgSmileSad } from "react-icons/cg";
 import { GrClose } from "react-icons/gr";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 import AuthContext from "../context/auth";
 
 export default function Logout() {
-  const { setShowLogoutModal } = useContext(State);
+  const { setShowLogoutModal } = useContext(StateContext);
   const { logout } = useContext(AuthContext);
 
   return (

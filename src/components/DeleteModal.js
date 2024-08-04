@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 
 export default function DeleteModal({ id }) {
-  const { setShowModal, deleteRow } = useContext(State);
+  const { setShowModal, deleteRow } = useContext(StateContext);
 
   return (
     <>

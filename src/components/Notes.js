@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 
 export default function Notes() {
-  const { notes } = useContext(State);
+  const { notes } = useContext(StateContext);
 
   return (
     <>

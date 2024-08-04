@@ -1,3 +1,5 @@
+// src/pages/InvoiceForm.js
+
 import React, { useContext, useRef } from 'react';
 import ClientDetails from '../components/ClientDetails';
 import Dates from '../components/Dates';
@@ -8,7 +10,7 @@ import Notes from '../components/Notes';
 import Table from '../components/Table';
 import TableForm from '../components/TableForm';
 import ReactToPrint from 'react-to-print';
-import { State } from '../context/stateContext';
+import {StateContext } from '../context/stateContext'; // Ensure the path is correct
 
 const InvoiceForm = () => {
   const {
@@ -38,10 +40,17 @@ const InvoiceForm = () => {
     setDueDate,
     notes,
     setNotes,
-    componentRef,
-  } = useContext(State);
+    componentRef, // Ensure componentRef is part of State context
+    setComponentRef, // Add if you need to update componentRef
+  } = useContext(StateContext);
 
-  console.log('InvoiceForm rendered');
+  // Initialize componentRef if not present
+  const ref = useRef();
+  React.useEffect(() => {
+    if (componentRef === null) {
+      setComponentRef(ref); // Ensure setComponentRef is available in the context
+    }
+  }, [componentRef, setComponentRef]);
 
   return (
     <main className="m-5 p-5 xl:grid grid-cols-2 gap-10 xl:items-start" style={{ maxWidth: "1920px", margin: "auto" }}>
@@ -237,10 +246,10 @@ const InvoiceForm = () => {
                     Print / Download
                   </button>
                 )}
-                content={() => componentRef.current}
+                content={() => ref.current} // Use local ref instead of componentRef from context
               />
               <div className="hidden">
-                <div ref={componentRef} className="p-5">
+                <div ref={ref} className="p-5">
                   <Header />
                   <MainDetails />
                   <ClientDetails />

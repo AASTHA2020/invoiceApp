@@ -3,7 +3,7 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeleteModal from "./DeleteModal";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
 
 export default function TableForm() {
   const {
@@ -14,14 +14,14 @@ export default function TableForm() {
     price,
     setPrice,
     amount,
-    list,
+    list = [], // Default to empty array if undefined
     total,
     isEditing,
     showModal,
     setShowModal,
     handleSubmit,
     editRow,
-  } = useContext(State);
+  } = useContext(StateContext);
 
   return (
     <>
@@ -82,7 +82,6 @@ export default function TableForm() {
       </form>
 
       {/* Table items */}
-
       <table width="100%" className="mb-10 overflow-auto">
         <thead>
           <tr className="bg-gray-100 p-1">
@@ -92,9 +91,9 @@ export default function TableForm() {
             <td className="font-bold">Amount</td>
           </tr>
         </thead>
-        {list.map(({ id, description, quantity, price, amount }) => (
-          <React.Fragment key={id}>
-            <tbody>
+        <tbody>
+          {list.map(({ id, description, quantity, price, amount }) => (
+            <React.Fragment key={id}>
               <tr className="h-10">
                 <td>{description}</td>
                 <td>{quantity}</td>
@@ -111,10 +110,10 @@ export default function TableForm() {
                   </button>
                 </td>
               </tr>
-            </tbody>
-            {showModal && <DeleteModal id={id} />}
-          </React.Fragment>
-        ))}
+              {showModal && <DeleteModal id={id} />}
+            </React.Fragment>
+          ))}
+        </tbody>
       </table>
 
       <div>

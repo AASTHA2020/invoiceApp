@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 
 export default function MainDetails() {
-  const { name, address } = useContext(State);
+  const { name, address } = useContext(StateContext);
 
   return (
     <>

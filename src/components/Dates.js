@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 
 export default function Dates() {
-  const { invoiceNumber, invoiceDate, dueDate } = useContext(State);
+  const { invoiceNumber, invoiceDate, dueDate } = useContext(StateContext);
 
   return (
     <>

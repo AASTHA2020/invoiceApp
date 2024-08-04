@@ -9,7 +9,8 @@ import Table from "./Table";
 import TableForm from "./TableForm";
 import ReactToPrint from "react-to-print";
 import { DonateButton } from "../buttons";
-import { State } from "../context/stateContext";
+import { StateContext } from '../context/stateContext';
+
 
 function App() {
   const {
@@ -40,7 +41,7 @@ function App() {
     notes,
     setNotes,
     componentRef,
-  } = useContext(State);
+  } = useContext(StateContext);
 
   return (
     <>
