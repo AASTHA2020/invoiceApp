@@ -42,7 +42,7 @@ const InvoiceForm = () => {
   } = useContext(State);
 
   console.log('InvoiceForm rendered');
-  
+
   return (
     <main className="m-5 p-5 xl:grid grid-cols-2 gap-10 xl:items-start" style={{ maxWidth: "1920px", margin: "auto" }}>
       <section>
@@ -214,45 +214,45 @@ const InvoiceForm = () => {
                 />
               </div>
             </article>
-            <article className="md:mt-10">
+            <article>
+              <TableForm />
+              <Table />
+            </article>
+            <article>
               <label htmlFor="notes">Additional Notes</label>
               <textarea
                 name="notes"
                 id="notes"
                 cols="30"
                 rows="10"
-                placeholder="Additional Notes"
-                maxLength={1000}
-                autoComplete="off"
+                placeholder="Additional notes to the client"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
               ></textarea>
             </article>
-            <article className="md:mt-10">
-              <Table />
-              <TableForm />
-            </article>
-            <div className="mt-10">
+            <article className="md:mt-20 mt-10">
               <ReactToPrint
                 trigger={() => (
-                  <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                    Print Invoice
+                  <button className="bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">
+                    Print / Download
                   </button>
                 )}
                 content={() => componentRef.current}
               />
-            </div>
+              <div className="hidden">
+                <div ref={componentRef} className="p-5">
+                  <Header />
+                  <MainDetails />
+                  <ClientDetails />
+                  <Dates />
+                  <Table />
+                  <Notes />
+                  <Footer />
+                </div>
+              </div>
+            </article>
           </div>
         </div>
-      </section>
-      <section className="md:mt-5 md:p-5" ref={componentRef}>
-        <Header />
-        <MainDetails />
-        <ClientDetails />
-        <Dates />
-        <Table />
-        <Notes />
-        <Footer />
       </section>
     </main>
   );

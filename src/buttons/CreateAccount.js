@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Form.css';
 
 const CreateAccount = () => {
@@ -10,7 +12,16 @@ const CreateAccount = () => {
 
   const handleSignUp = () => {
     if (username && email && password) {
-      navigate('/thank-you');
+      toast.success('Account created successfully!', {
+        position: "top-center",
+        autoClose: 3000, // 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        onClose: () => navigate('/invoice-form')
+      });
     } else {
       alert('Please fill in all fields');
     }
@@ -18,6 +29,7 @@ const CreateAccount = () => {
 
   return (
     <div className="form-container">
+      <ToastContainer />
       <h1>Create Account</h1>
       <div className="form-group">
         <label>Username:</label>
