@@ -1,13 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Form.css';
 
-export function LogIn() {
+const LogIn = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (username === 'user' && password === 'password') {
+      navigate('/invoice-form');
+    } else {
+      alert('Invalid credentials');
+    }
+  };
+
   return (
-    <Link
-      to="/login"
-      className="inline-block bg-gray-300 hover:bg-gray-400 text-slate-800 text-center font-semibold py-2 px-5 rounded"
-    >
-      Log In
-    </Link>
+    <div className="form-container">
+      <h1>Login</h1>
+      <div className="form-group">
+        <label>Username:</label>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <label>Password:</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
+      <button onClick={handleLogin}>Login</button>
+    </div>
   );
-}
+};
+
+export default LogIn;

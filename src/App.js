@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home'; // Ensure this path is correct
-import About from './pages/About'; // Ensure this path is correct
-import InvoiceForm from './pages/InvoiceForm'; // Ensure this path is correct
-import Error from './pages/Error'; // Ensure this path is correct
-import Cancelled from './pages/Cancelled'; // Ensure this path is correct
-import ThankYou from './pages/ThankYou'; // Ensure this path is correct
+import Home from './pages/Home';
+import About from './pages/About';
+import InvoiceForm from './pages/InvoiceForm';
+import Error from './pages/Error';
+import Cancelled from './pages/Cancelled';
+import ThankYou from './pages/ThankYou';
+import { LogIn, CreateAccount } from './buttons';  // Correct imports
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="/cancelled" element={<Cancelled />} />
         <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<CreateAccount />} />
       </Routes>
     </BrowserRouter>
   );

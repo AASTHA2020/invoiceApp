@@ -1,3 +1,5 @@
-export { CreateAccount } from './CreateAccount';
-export { LogIn } from './LogIn';
-export { LogOut } from './LogOut';  // Ensure LogOut is also correctly named exported
+import CreateAccount from './CreateAccount';
+import LogIn from './LogIn';
+import LogOut from './LogOut';
+
+export { CreateAccount, LogIn, LogOut };
