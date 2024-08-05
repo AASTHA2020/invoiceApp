@@ -1,0 +1,19 @@
+/* Footer Styles */
+.footer {
+    padding: 0.5rem 1rem; /* Small padding */
+    text-align: center; /* Center align text */
+    background-color: #f9f9f9; /* Light background color */
+    border-top: 1px solid #ddd; /* Border at the top */
+  }
+  
+  .footer-text {
+    font-size: 0.5rem; /* Smaller font size */
+    color: #333; /* Dark text color */
+    margin: 0; /* Remove margin */
+  }
+  
+  .footer-link {
+    color: #003366; /* Dark blue color for the link */
+    text-decoration: underline; /* Underline the link */
+  }
+  

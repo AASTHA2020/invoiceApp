@@ -1,0 +1,51 @@
+/* src/styles/invoiceStyles.css */
+
+/* Container */
+.invoice-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 0; /* Removed padding */
+    margin: auto;
+    max-height: 0%;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Smaller border-radius */
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Reduced bottom margin */
+}
+
+.date-info {
+    display: flex;
+    gap: 190px; /* Reduced gap */
+    align-items: center;
+}
+
+.date-info p {
+    margin: 0;
+    color: #003366; /* Dark Blue */
+    font-size: 0.875rem; /* Smaller font size */
+}
+
+/* Company Details */
+.company-details {
+    margin-bottom: 10px; /* Reduced bottom margin */
+}
+
+.company-details p {
+    margin: 2px 0; /* Reduced margin */
+    font-size: 0.875rem; /* Smaller font size */
+}
+
+/* Client Details */
+.client-details {
+    margin-bottom: 10px; /* Reduced bottom margin */
+}
+
+.client-details p {
+    margin: 2px 0; /* Reduced margin */
+    font-size: 0.875rem; /* Smaller font size */
+}

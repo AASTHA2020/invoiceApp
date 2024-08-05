@@ -1,9 +1,11 @@
+// src/components/TableForm.js
 import React, { useContext } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeleteModal from "./DeleteModal";
 import { StateContext } from '../context/stateContext';
+import './tableFormStyles.css'; // Import the new CSS file
 
 export default function TableForm() {
   const {
@@ -21,15 +23,16 @@ export default function TableForm() {
     setShowModal,
     handleSubmit,
     editRow,
+    deleteRow // Include deleteRow for deletion
   } = useContext(StateContext);
 
   return (
     <>
       <ToastContainer position="top-right" theme="colored" />
 
-      <form onSubmit={handleSubmit} className="bg-white p-5 shadow-md rounded mb-5">
-        <div className="flex flex-col mb-4">
-          <label htmlFor="description" className="font-bold mb-2">Item description</label>
+      <form onSubmit={handleSubmit} className="form-container">
+        <div className="form-group">
+          <label htmlFor="description" className="font-bold">Item description</label>
           <input
             type="text"
             name="description"
@@ -38,13 +41,13 @@ export default function TableForm() {
             maxLength={96}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border border-gray-300 p-2 rounded"
+            className="input-field"
           />
         </div>
 
-        <div className="md:grid grid-cols-3 gap-10 mb-4">
-          <div className="flex flex-col">
-            <label htmlFor="quantity" className="font-bold mb-2">Quantity</label>
+        <div className="form-grid">
+          <div className="form-group">
+            <label htmlFor="quantity" className="font-bold">Quantity</label>
             <input
               type="number"
               name="quantity"
@@ -52,12 +55,12 @@ export default function TableForm() {
               placeholder="Quantity"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="border border-gray-300 p-2 rounded"
+              className="input-field"
             />
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="price" className="font-bold mb-2">Price</label>
+          <div className="form-group">
+            <label htmlFor="price" className="font-bold">Price</label>
             <input
               type="number"
               name="price"
@@ -65,48 +68,48 @@ export default function TableForm() {
               placeholder="Price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="border border-gray-300 p-2 rounded"
+              className="input-field"
             />
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="amount" className="font-bold mb-2">Amount</label>
-            <p className="border border-gray-300 p-2 rounded">{amount}</p>
+          <div className="form-group">
+            <label htmlFor="amount" className="font-bold">Amount</label>
+            <p className="input-field">{amount}</p>
           </div>
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 text-white font-bold py-2 px-8 rounded hover:bg-blue-600 transition-all duration-150"
+          className="submit-button"
         >
           {isEditing ? "Finish Editing" : "Add Item"}
         </button>
       </form>
 
-      <table width="100%" className="mb-10 overflow-auto bg-white shadow-md rounded">
+      <table className="table-container">
         <thead>
-          <tr className="bg-gray-100 p-1">
-            <td className="font-bold p-2">Description</td>
-            <td className="font-bold p-2">Quantity</td>
-            <td className="font-bold p-2">Price</td>
-            <td className="font-bold p-2">Amount</td>
-            <td className="font-bold p-2">Actions</td>
+          <tr className="table-header">
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {list.map(({ id, description, quantity, price, amount }) => (
             <React.Fragment key={id}>
-              <tr className="h-10">
-                <td className="p-2">{description}</td>
-                <td className="p-2">{quantity}</td>
-                <td className="p-2">{price}</td>
-                <td className="p-2">{amount}</td>
-                <td className="p-2 flex gap-2">
+              <tr className="table-row">
+                <td>{description}</td>
+                <td>{quantity}</td>
+                <td>{price}</td>
+                <td>{amount}</td>
+                <td>
                   <button onClick={() => editRow(id)} className="text-green-500">
-                    <AiOutlineEdit className="text-xl" />
+                    <AiOutlineEdit />
                   </button>
-                  <button onClick={() => setShowModal(true)} className="text-red-500">
-                    <AiOutlineDelete className="text-xl" />
+                  <button onClick={() => deleteRow(id)} className="text-red-500">
+                    <AiOutlineDelete />
                   </button>
                 </td>
               </tr>
@@ -116,10 +119,12 @@ export default function TableForm() {
         </tbody>
       </table>
 
-      <div>
-        <h2 className="flex items-end justify-end text-gray-800 text-4xl font-bold">
-          Total: {total.toLocaleString()}
-        </h2>
+      <div className="total">
+        Total: {total.toLocaleString()}
+      </div>
+
+      <div className="additional-notes-container">
+        <p>Your additional notes will be shown here. If they are too long, scroll within this container.</p>
       </div>
     </>
   );

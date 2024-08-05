@@ -1,32 +1,46 @@
-import React, { useContext } from "react";
-import { StateContext } from '../context/stateContext';
+// src/components/MainDetails.js
+import React, { useContext } from 'react';
+import { StateContext } from '../context/stateContext'; // Update the path as needed
+import './invoiceStyles.css'; // Update the path as needed
 
 export default function MainDetails() {
-  const { name, address, email, phone, bankName, bankAccount, website } = useContext(StateContext);
+  const {
+    name,
+    address,
+    email,
+    phone,
+    bankName,
+    bankAccount,
+    website,
+    clientName,
+    clientAddress,
+    invoiceNumber,
+    invoiceDate,
+    dueDate,
+    notes
+  } = useContext(StateContext);
 
   return (
-    <>
-      <section className="flex flex-col items-end justify-end">
-        <h2 className="font-bold text-xl uppercase mb-1">{name}</h2>
+    <div className="invoice-container">
+      <header className="header">
+        
+        <div className="date-info">
+          <p>Date: {invoiceDate}</p>
+          <p>Due Date: {dueDate}</p>
+        </div>
+      </header>
+
+      <section className="company-details">
+        <p><strong>{name}</strong></p>
         <p>{address}</p>
+        <p>Email: {email}</p>
+        <p>Phone: {phone}</p>
+        <p>Website: {website}</p>
       </section>
 
-      <section className="my-5 flex flex-col items-end justify-end">
-        <h3 className="text-2xl uppercase mb-1">Contact Details</h3>
-        <p>{email}</p>
-        <p>{phone}</p>
-      </section>
+   
 
-      <section className="flex flex-col items-end justify-end">
-        <h3 className="font-bold uppercase mb-1">Bank Details</h3>
-        <p>{bankName}</p>
-        <p>{bankAccount}</p>
-      </section>
-
-      <section className="flex flex-col items-end justify-end">
-        <h3 className="font-bold uppercase mb-1">Website</h3>
-        <p>{website}</p>
-      </section>
-    </>
+     
+    </div>
   );
 }

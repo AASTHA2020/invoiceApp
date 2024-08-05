@@ -1,0 +1,41 @@
+/* Table Styles */
+.invoice-table {
+    width: 100%;
+    margin-bottom: 1.5rem; /* Reduced margin */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    border-radius: 0.25rem; /* Slightly smaller rounded corners */
+}
+
+.invoice-table thead {
+    background-color: #003366; /* Dark blue background for header */
+}
+
+.invoice-table thead th {
+    color: #ffffff; /* White text */
+    padding: 0.25rem; /* Reduced padding for header cells */
+    font-weight: bold; /* Bold text */
+    font-size: 0.875rem; /* Smaller font size */
+}
+
+.invoice-table tbody tr:nth-child(even) {
+    background-color: #f0f4f8; /* Light blue for even rows */
+}
+
+.invoice-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+.invoice-table tbody td {
+    padding: 0.25rem; /* Reduced padding for table cells */
+    font-size: 0.875rem; /* Smaller font size for table cells */
+}
+
+.total-amount {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #ff0000; /* Red text for total amount */
+    font-size: 1.5rem; /* Reduced text size */
+    font-weight: bold; /* Bold text */
+}

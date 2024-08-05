@@ -1,36 +1,35 @@
 import React, { useContext } from "react";
 import { StateContext } from '../context/stateContext';
+import './Table.css'; // Ensure the CSS file is imported
 
 export default function Table() {
   const { list, total } = useContext(StateContext);
 
   return (
     <>
-      <table width="100%" className="mb-10 bg-white shadow-md rounded">
+      <table className="invoice-table">
         <thead>
-          <tr className="bg-gray-100 p-1">
-            <td className="font-bold p-2">Description</td>
-            <td className="font-bold p-2">Quantity</td>
-            <td className="font-bold p-2">Price</td>
-            <td className="font-bold p-2">Amount</td>
+          <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
           {list.map(({ id, description, quantity, price, amount }) => (
-            <tr key={id} className="h-10">
-              <td className="p-2">{description}</td>
-              <td className="p-2">{quantity}</td>
-              <td className="p-2">{price}</td>
-              <td className="p-2">{amount}</td>
+            <tr key={id}>
+              <td>{description}</td>
+              <td>{quantity}</td>
+              <td>{price}</td>
+              <td>{amount}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <div>
-        <h2 className="flex items-end justify-end text-gray-800 text-4xl font-bold">
-          Total: {total.toLocaleString()}
-        </h2>
+      <div className="total-amount">
+        <h2>Total: {total.toLocaleString()}</h2>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef } from "react";
 import ClientDetails from '../components/ClientDetails';
 import Dates from '../components/Dates';
 import Footer from '../pages/components/Footer';
@@ -181,12 +181,12 @@ const InvoiceForm = () => {
         </article>
         <article className="md:grid grid-cols-2 gap-10">
           <div className="flex flex-col">
-            <label htmlFor="invoiceNumber">Invoice Number</label>
+            <label htmlFor="invoiceNumber">Invoice number</label>
             <input
               type="text"
               name="invoiceNumber"
               id="invoiceNumber"
-              placeholder="Invoice Number"
+              placeholder="Invoice number"
               maxLength={10}
               autoComplete="off"
               value={invoiceNumber}
@@ -194,84 +194,70 @@ const InvoiceForm = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label htmlFor="invoiceDate">Invoice Date</label>
+            <label htmlFor="invoiceDate">Invoice date</label>
             <input
               type="date"
               name="invoiceDate"
               id="invoiceDate"
-              placeholder="Invoice Date"
+              placeholder="Invoice date"
               autoComplete="off"
               value={invoiceDate}
               onChange={(e) => setInvoiceDate(e.target.value)}
             />
           </div>
+        </article>
+        <article className="md:grid grid-cols-2 gap-10">
           <div className="flex flex-col">
-            <label htmlFor="dueDate">Due Date</label>
+            <label htmlFor="dueDate">Due date</label>
             <input
               type="date"
               name="dueDate"
               id="dueDate"
-              placeholder="Due Date"
+              placeholder="Due date"
               autoComplete="off"
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
             />
           </div>
+          <div className="flex flex-col">
+            <label htmlFor="notes">Additional notes</label>
+            <textarea
+              name="notes"
+              id="notes"
+              placeholder="Additional notes"
+              maxLength={256}
+              autoComplete="off"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          </div>
         </article>
-        <article className="mt-5">
-          <TableForm />
-        </article>
-        <article className="mt-5">
-          <label htmlFor="notes">Additional Notes</label>
-          <textarea
-            name="notes"
-            id="notes"
-            cols="30"
-            rows="10"
-            placeholder="Additional notes to the client"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          ></textarea>
-        </article>
-        <article className="mt-10">
-          <ReactToPrint
-            trigger={() => (
-              <button className="bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">
-                Print / Download
-              </button>
-            )}
-            content={() => ref.current}
-          />
-        </article>
+        <TableForm />
       </section>
 
       {/* Invoice Certificate Section */}
-      <section className="invoice-certificate bg-white p-5 rounded shadow">
-        <div ref={ref} className="p-5">
-          <div className="flex items-center justify-between mb-3">
-            <img src={logo} alt="Logo" className="logo" />
-            <h1 className="text-2xl font-bold">Invoice Certificate</h1>
-          </div>
-          <div className="main-details">
-            <MainDetails name={name} address={address} email={email} phone={phone} bankName={bankName} bankAccount={bankAccount} website={website} />
-          </div>
-          <div className="client-details">
-            <ClientDetails clientName={clientName} clientAddress={clientAddress} />
-          </div>
-          <div className="dates">
-            <Dates invoiceNumber={invoiceNumber} invoiceDate={invoiceDate} dueDate={dueDate} />
-          </div>
-          <div className="table-section">
-            <Table items={items} />
-          </div>
-          <div className="notes-section">
-            <Notes notes={notes} />
-          </div>
-          <div className="footer-section">
-            <Footer />
-          </div>
+      <section className="invoice-certificate" ref={ref}>
+        <div className="header-container">
+        <img src={logo} alt="Logo" className="logo" />
+
+          <h1>Invoice Certificate</h1>
+        </div>
+
+        <MainDetails />
+        <ClientDetails />
+        <Dates />
+        <Table />
+        <Notes />
+
+        <div className="footer-section">
+          <Footer />
         </div>
       </section>
+
+      <ReactToPrint
+        trigger={() => <button className="print-button">Print Certificate</button>}
+        content={() => ref.current}
+      />
     </main>
   );
 };

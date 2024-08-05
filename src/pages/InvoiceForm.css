@@ -1,60 +1,96 @@
-.invoice-container {
-    margin: auto;
-    max-width: 800px;
-    background: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .invoice-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    width: 50px;
-  }
-  
-  .invoice-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .main-details, .client-details, .dates, .table-section, .notes-section, .footer-section {
-    margin-bottom: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  button {
-    background-color: #0044cc;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #003399;
-  }
-  
+/* InvoiceForm.css */
+
+/* General Styles */
+.m-5 { margin: 1.25rem; }
+.p-5 { padding: 1.25rem; }
+.bg-white { background-color: #ffffff; }
+.rounded { border-radius: 0.375rem; }
+.shadow { box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); }
+.border-2 { border-width: 2px; }
+.text-2xl { font-size: 1.5rem; }
+.font-bold { font-weight: bold; }
+.transition-all { transition: all 0.3s; }
+.duration-300 { transition-duration: 0.3s; }
+.hover\:bg-transparent:hover { background-color: transparent; }
+.hover\:text-blue-500:hover { color: #3b82f6; }
+
+/* Certificate Styles */
+.invoice-certificate {
+  width: 70%; /* Reduced width for a more compact look */
+  margin: 1.5rem auto; /* Adjusted margin for better spacing */
+  padding: 1.5rem; /* Reduced padding */
+  background-color: #ffffff; /* White background for the certificate */
+  border: 1px solid #003366; /* Thinner border */
+  border-radius: 0.375rem; /* Slightly smaller rounded corners */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  font-family: Arial, sans-serif; /* Font for the certificate */
+}
+
+.invoice-certificate h1 {
+  color: #003366; /* Dark blue */
+  font-size: 1.5rem; /* Smaller font size */
+  font-weight: bold;
+  text-align: center;
+}
+
+.logo {
+    width: 170px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure logo fits within container */
+}
+
+.table-container {
+  width: 100%; /* Full width for the table */
+  border-collapse: collapse;
+}
+
+.table-header {
+  background-color: #003366; /* Dark blue */
+  color: #fff; /* White text */
+  font-weight: bold;
+}
+
+.table-header th {
+  padding: 0.75rem; /* Reduced padding */
+  text-align: left;
+}
+
+.table-row {
+  background-color: #ffffff; /* White background for rows */
+}
+
+.table-row:nth-child(even) {
+  background-color: #f0f4f8; /* Light grey for even rows */
+}
+
+.table-cell {
+  padding: 0.75rem; /* Reduced padding */
+}
+
+.notes-container {
+  border: 1px solid #003366; /* Dark blue border */
+  padding: 0.75rem; /* Reduced padding */
+  border-radius: 0.375rem; /* Rounded corners */
+  margin-top: 0.75rem; /* Reduced margin for separation */
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  text-align: center;
+  font-size: x-small;
+  color: #003366; /* Dark blue */
+  font-weight: bold;
+  margin-top: 1rem; /* Reduced margin */
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem; /* Smaller margin for a more compact look */
+}
+
+.header-container h1 {
+  font-size: 1.25rem; /* Smaller font size for the header */
+}
