@@ -7,13 +7,25 @@ export default function MainDetails() {
   return (
     <>
       <section className="flex flex-col items-end justify-end">
-        <h2 className="font-bold text-3xl uppercase mb-1">{name}</h2>
+        <h2 className="font-bold text-xl uppercase mb-1">{name}</h2>
         <p>{address}</p>
-        <p>Email: {email}</p>
-        <p>Phone: {phone}</p>
-        <p>Website: {website}</p>
-        <p>Bank Name: {bankName}</p>
-        <p>Bank Account: {bankAccount}</p>
+      </section>
+
+      <section className="my-5 flex flex-col items-end justify-end">
+        <h3 className="text-2xl uppercase mb-1">Contact Details</h3>
+        <p>{email}</p>
+        <p>{phone}</p>
+      </section>
+
+      <section className="flex flex-col items-end justify-end">
+        <h3 className="font-bold uppercase mb-1">Bank Details</h3>
+        <p>{bankName}</p>
+        <p>{bankAccount}</p>
+      </section>
+
+      <section className="flex flex-col items-end justify-end">
+        <h3 className="font-bold uppercase mb-1">Website</h3>
+        <p>{website}</p>
       </section>
     </>
   );

@@ -26,15 +26,55 @@ const StateProvider = ({ children }) => {
   const [list, setList] = useState([]);
   const [total, setTotal] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle submit logic
+  // Function to update the total amount
+  const updateTotal = (items) => {
+    const totalAmount = items.reduce((acc, item) => acc + item.amount, 0);
+    setTotal(totalAmount);
   };
 
+  // Handle form submit for adding or editing items
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newItem = {
+      id: list.length ? list[list.length - 1].id + 1 : 1,
+      description,
+      quantity,
+      price,
+      amount: quantity * price,
+    };
+    if (isEditing) {
+      setList(list.map(item => item.id === editId ? newItem : item));
+      setIsEditing(false);
+      setEditId(null);
+    } else {
+      setList([...list, newItem]);
+    }
+    setDescription('');
+    setQuantity('');
+    setPrice('');
+    setAmount(0);
+    updateTotal([...list, newItem]);
+  };
+
+  // Edit row function to populate form fields with existing item data
   const editRow = (id) => {
-    // Handle edit row logic
+    const item = list.find(item => item.id === id);
+    setDescription(item.description);
+    setQuantity(item.quantity);
+    setPrice(item.price);
+    setIsEditing(true);
+    setEditId(id);
+  };
+
+  // Function to delete an item from the list
+  const deleteRow = (id) => {
+    const newList = list.filter(item => item.id !== id);
+    setList(newList);
+    setShowModal(false);
+    updateTotal(newList);
   };
 
   return (
@@ -88,6 +128,7 @@ const StateProvider = ({ children }) => {
         setShowModal,
         handleSubmit,
         editRow,
+        deleteRow, // Include deleteRow function
       }}
     >
       {children}
