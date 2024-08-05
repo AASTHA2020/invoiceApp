@@ -28,12 +28,12 @@ export default function Footer() {
           <li>
             <span className="font-bold">Account number:</span> {bankAccount}
           </li>
-          <li>
+          {/* <li>
             <span className="font-bold">Website:</span>{" "}
             <a href={website} target="_blank" rel="noopenner noreferrer">
               {website}
             </a>
-          </li>
+          </li> */}
         </ul>
       </footer>
 

@@ -3,14 +3,14 @@
 import React, { useContext, useRef } from 'react';
 import ClientDetails from '../components/ClientDetails';
 import Dates from '../components/Dates';
-import Footer from '../pages/components/Footer';
-import Header from '../pages/components/Header';
+import Footer from '../pages/components/Footer'; // Update path if needed
+import Header from '../pages/components/Header'; // Update path if needed
 import MainDetails from '../components/MainDetails';
 import Notes from '../components/Notes';
 import Table from '../components/Table';
 import TableForm from '../components/TableForm';
 import ReactToPrint from 'react-to-print';
-import {StateContext } from '../context/stateContext'; // Ensure the path is correct
+import { StateContext } from '../context/stateContext';
 
 const InvoiceForm = () => {
   const {
@@ -40,29 +40,29 @@ const InvoiceForm = () => {
     setDueDate,
     notes,
     setNotes,
-    componentRef, // Ensure componentRef is part of State context
-    setComponentRef, // Add if you need to update componentRef
+    componentRef,
+    setComponentRef,
   } = useContext(StateContext);
 
-  // Initialize componentRef if not present
   const ref = useRef();
   React.useEffect(() => {
     if (componentRef === null) {
-      setComponentRef(ref); // Ensure setComponentRef is available in the context
+      setComponentRef(ref);
     }
   }, [componentRef, setComponentRef]);
 
   return (
-    <main className="m-5 p-5 xl:grid grid-cols-2 gap-10 xl:items-start" style={{ maxWidth: "1920px", margin: "auto" }}>
+    <main className="m-5 p-5 xl:grid grid-cols-2 gap-10 xl:items-start" style={{ maxWidth: '1920px', margin: 'auto' }}>
       <section>
         <div className="bg-white p-5 rounded shadow">
           <div className="flex flex-col justify-center">
+            {/* Invoice Form Section */}
             <article className="md:grid grid-cols-2 gap-10">
               <div className="flex flex-col">
                 <label htmlFor="name">Your full name</label>
                 <input
                   type="text"
-                  name="text"
+                  name="name"
                   id="name"
                   placeholder="Enter your name"
                   maxLength={56}
@@ -246,7 +246,7 @@ const InvoiceForm = () => {
                     Print / Download
                   </button>
                 )}
-                content={() => ref.current} // Use local ref instead of componentRef from context
+                content={() => ref.current}
               />
               <div className="hidden">
                 <div ref={ref} className="p-5">
@@ -261,6 +261,17 @@ const InvoiceForm = () => {
               </div>
             </article>
           </div>
+        </div>
+      </section>
+      <section className="bg-white p-5 rounded shadow">
+        <div ref={ref} className="p-5">
+          <Header />
+          <MainDetails />
+          <ClientDetails />
+          <Dates />
+          <Table />
+           <Notes />
+          <Footer /> 
         </div>
       </section>
     </main>
